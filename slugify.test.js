@@ -1,4 +1,3 @@
-// const test = require('node:test');
 const slugify = require('./dist/index.js');
 
 test('Hello World', () => {
@@ -39,4 +38,8 @@ test('Underscores and Dashes', () => {
 
 test('Non-ASCII Characters', () => {
     expect(slugify('Héllo Wörld')).toBe('hello-world');
+});
+
+test('Separator', () => {
+    expect(slugify('Hello World', '_')).toBe('hello_world');
 });
