@@ -1,0 +1,23 @@
+{
+  "name": "rushdtask1",
+  "version": "1.0.0",
+  "description": "Slug generator Library",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc src/index.ts --outDir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ApraCadabra/Rushd-Task-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ApraCadabra/Rushd-Task-1/issues"
+  },
+  "homepage": "https://github.com/ApraCadabra/Rushd-Task-1#readme",
+  "devDependencies": {
+    "@types/node": "^25.5.0"
+  }
+}
