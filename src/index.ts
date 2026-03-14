@@ -8,12 +8,16 @@ function isAlphanumeric(character: string): boolean {
 }
 
 function isWhitespace(character: string): boolean {
-    return /\s/.test(character);
+    return /\s/.test(character) || character === "_";
 }
 
 function slugify(input: string): string {
+    const normalized = input
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
     let slug: string = "";
-    for (const character of input) {
+    for (const character of normalized) {
         if (isAlphanumeric(character)) {
             slug += character.toLowerCase();
         } else if (isWhitespace(character) && slug.length > 0 && !slug.endsWith("-")) {
