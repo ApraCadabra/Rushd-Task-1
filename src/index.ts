@@ -11,7 +11,7 @@ function isWhitespace(character: string): boolean {
     return /\s/.test(character) || character === "_";
 }
 
-function slugify(input: string): string {
+function slugify(input: string, separator: string = "-"): string {
     const normalized = input
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
@@ -20,12 +20,12 @@ function slugify(input: string): string {
     for (const character of normalized) {
         if (isAlphanumeric(character)) {
             slug += character.toLowerCase();
-        } else if (isWhitespace(character) && slug.length > 0 && !slug.endsWith("-")) {
-            slug += "-";
+        } else if (isWhitespace(character) && slug.length > 0 && !slug.endsWith(separator)) {
+            slug += separator;
         }
     }
 
-    if (slug.endsWith("-")) {
+    if (slug.endsWith(separator)) {
         slug = slug.slice(0, -1);
     }
 
