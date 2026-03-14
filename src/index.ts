@@ -16,7 +16,7 @@ function slugify(input: string): string {
     for (const character of input) {
         if (isAlphanumeric(character)) {
             slug += character.toLowerCase();
-        } else if (isWhitespace(character) && slug.length > 0 && slug[slug.length - 1] !== '-') {
+        } else if (isWhitespace(character) && slug.length > 0 && !slug.endsWith("-")) {
             slug += "-";
         }
     }
