@@ -16,6 +16,7 @@ export function slugify(input: string, separator: string = "-"): string {
         .replace(/[-_ ]+/g, " ")
         .replace(/[^0-9a-z ]/g, "")
         .trim()
-        .replaceAll(" ", separator);
+        .replace(/[ ]/g, separator);
+        
 }
 

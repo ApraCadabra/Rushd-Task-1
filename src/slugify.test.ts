@@ -78,4 +78,16 @@ test('Wrong input type', () => {
 
 test('Wrong separator type', () => {
     expect(() => slugify('Hello World', 123 as unknown as string)).toThrow("Separator must be a string");
-});``
+});
+
+test('Armenian Characters', () => {
+    expect(slugify('Բարեւ աշխարհ')).toBe('');
+});
+
+test('Chinese Characters', () => {
+    expect(slugify('你好世界')).toBe('');
+});
+
+test('Emoji Characters', () => {
+    expect(slugify('Hello World 😊')).toBe('hello-world');
+});
