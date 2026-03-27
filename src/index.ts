@@ -1,35 +1,22 @@
-function isAlphanumeric(character: string): boolean {
-    const code: number = character.charCodeAt(0);
-    return (
-        (code >= 48 && code <= 57) || // 0-9
-        (code >= 65 && code <= 90) || // A-Z
-        (code >= 97 && code <= 122)   // a-z
-    );
-}
-
-function isWhitespace(character: string): boolean {
-    return /\s/.test(character) || character === "_";
-}
-
-function slugify(input: string, separator: string = "-"): string {
-    const normalized = input
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
-    let slug: string = "";
-    for (const character of normalized) {
-        if (isAlphanumeric(character)) {
-            slug += character.toLowerCase();
-        } else if (isWhitespace(character) && slug.length > 0 && !slug.endsWith(separator)) {
-            slug += separator;
-        }
+//takes a string and converts it to a slug (url friendly) format.
+//url friendly means that it should be lowercase, with words separated by a specified separator (default is a hyphen), and should not contain any special characters or spaces.
+export function slugify(input: string, separator: string = "-"): string {
+    
+    if (typeof input !== "string") {
+        throw new Error("Input must be a string");
     }
 
-    if (slug.endsWith(separator)) {
-        slug = slug.slice(0, -1);
+    if (typeof separator !== "string") {
+        throw new Error("Separator must be a string");
     }
 
-    return slug;
+    return input.normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[-_ ]+/g, " ")
+        .replace(/[^0-9a-z ]/g, "")
+        .trim()
+        .replace(/[ ]/g, separator);
+        
 }
 
-module.exports = slugify;
